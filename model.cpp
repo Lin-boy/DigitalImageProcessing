@@ -1,4 +1,4 @@
-// model.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+// model.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
@@ -17,18 +17,18 @@
 
 int main()
 {
-	//¸ñÊ½×ª»»//
-	/*char fileName[] = "E:/ÊıÍ¼/BIL_856cols_743rows_6bands_byte";
+	//æ ¼å¼è½¬æ¢//
+	/*char fileName[] = "E:/æ•°å›¾/BIL_856cols_743rows_6bands_byte";
 	BIL2bmp(fileName, 743, 856, 6);*/
 	//BSQ2bmp(fileName, 743, 856, 6);
 	//BIP2bmp(fileName, 743, 856, 6);
 
-	char imageName[] = "C:/Users/xiaofeng/Pictures/timg.jpg";
-	Mat imageIN = imread(imageName, IMREAD_COLOR);   // ¶ÁÈëÍ¼Æ¬ 
-	if (imageIN.empty())     // ÅĞ¶ÏÎÄ¼şÊÇ·ñÕı³£´ò¿ª  
+	char imageName[] = "timg.jpg";
+	Mat imageIN = imread(imageName, IMREAD_COLOR);   // è¯»å…¥å›¾ç‰‡ 
+	if (imageIN.empty())     // åˆ¤æ–­æ–‡ä»¶æ˜¯å¦æ­£å¸¸æ‰“å¼€  
 	{
 		fprintf(stderr, "Can not load image %s\n", imageName);
-		waitKey(6000);  // µÈ´ı6000 msºó´°¿Ú×Ô¶¯¹Ø±Õ   
+		waitKey(6000);  // ç­‰å¾…6000 msåçª—å£è‡ªåŠ¨å…³é—­   
 		return -1;
 	}
 	namedWindow("original", 1);
@@ -39,37 +39,37 @@ int main()
 	imshow("Gray", Grayimage);
 
 
-	//»Ò¶ÈÏßĞÔ±ä»»£ºRGBÍ¼ÏñºÍ»Ò¶ÈÍ¼Ïñ//
+	//ç°åº¦çº¿æ€§å˜æ¢ï¼šRGBå›¾åƒå’Œç°åº¦å›¾åƒ//
 
-	//Mat GLTimage = GrayLinerTran_RGB(imageIN);imshow("GrayLinerTran", GLTimage);  // ÏÔÊ¾Í¼Æ¬ 
+	//Mat GLTimage = GrayLinerTran_RGB(imageIN);imshow("GrayLinerTran", GLTimage);  // æ˜¾ç¤ºå›¾ç‰‡ 
 	//Mat GLTimage = GrayLinerTran_Gray(Grayimage); imshow("GrayLinerTran", GLTimage);
 
-	//¸ßÍ¨ÂË²¨ µÍÍ¨ÂË²¨//
+	//é«˜é€šæ»¤æ³¢ ä½é€šæ»¤æ³¢//
 	//Mat Himage=conv2D(Grayimage, Highpassfilter, 1);imshow("Highpassfiltter",Himage);
 	//Mat Limage=conv2D(Grayimage, Lowpassfilter, 8);imshow("Lowpassfillter",Limage);
 	//Mat Himage=conv3D(imageIN, Highpassfilter, 1); imshow("RGBHighpassfiltter", Himage);
 	//Mat Limage=conv3D(imageIN, Lowpassfilter, 8); imshow("RGBLowpassfillter", Limage);
 
 
-	//¼¸ºÎ´¦Àí(ÊäÈë²ÊÉ«Í¼Ïñ)//
+	//å‡ ä½•å¤„ç†(è¾“å…¥å½©è‰²å›¾åƒ)//
 	//Mat Timage=translation(imageIN, 100, 100);imshow("Translation", Timage);
-	//Mat Simage=scale(imageIN, 2);imshow("Scaling", Simage);//½¨ÒéËõ·ÅÒò×Ó·¶Î§Îª[0.6,4]
+	//Mat Simage=scale(imageIN, 2);imshow("Scaling", Simage);//å»ºè®®ç¼©æ”¾å› å­èŒƒå›´ä¸º[0.6,4]
 	//Mat  Rimage = Rotation(imageIN,45, -1, -1);namedWindow("rotation",1 );imshow("rotation", Rimage);
 
 
-	//»Ò¶ÈÍ¼Ïñ±ßÔµ¼ì²â£¨ÊäÈë»Ò¶ÈÍ¼Ïñ£©//
+	//ç°åº¦å›¾åƒè¾¹ç¼˜æ£€æµ‹ï¼ˆè¾“å…¥ç°åº¦å›¾åƒï¼‰//
 	//Mat sobelimage = edge_sobel(Grayimage); imshow("Sobel",sobelimage);
 	//Mat prewittimage = edge_sobel(Grayimage); imshow("Prewitt", prewittimage);
 
 
 
-	//ÖĞÖµÂË²¨£¬Ä¬ÈÏÎª3 x 3Ä£°å//
+	//ä¸­å€¼æ»¤æ³¢ï¼Œé»˜è®¤ä¸º3 x 3æ¨¡æ¿//
 	 Mat mediumimage= Rgb2Gray(imageIN);
 	 mediumimage=Mediumfliter(mediumimage); imshow("Mediumimage", mediumimage);
 	 Mat Rgb_mediumimage= Rgb_mediumfliter(imageIN); imshow("Rgb_Mediumimage", Rgb_mediumimage);
 
 
-	//HoughLine(imageIN,1,1);//ÊäÈë²ÊÉ«Í¼£¬ÄÚÖÃ¶şÖµ»¯²ÉÓÃ¼òµ¥¶şÖµ»¯	//
+	//HoughLine(imageIN,1,1);//è¾“å…¥å½©è‰²å›¾ï¼Œå†…ç½®äºŒå€¼åŒ–é‡‡ç”¨ç®€å•äºŒå€¼åŒ–	//
 
 	//imshow("test", imageIN);
 	//imwrite("Edgefortest.jpg",prewittimage);
